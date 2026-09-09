@@ -2,326 +2,344 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Surebet Optimizer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SureBet Optimizer</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:#f3f5f8;
-color:#111827;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#f4f6fb;
+  color:#172033;
 }
 
 .container{
-max-width:1000px;
-margin:auto;
-padding:16px;
+  width:min(100%,1100px);
+  margin:auto;
+  padding:20px;
 }
 
 h1{
-font-size:30px;
-margin:0 0 6px;
-}
-
-h2{
-margin-top:0;
+  margin:0;
+  font-size:32px;
+  font-weight:900;
 }
 
 .subtitle{
-color:#6b7280;
-margin-bottom:18px;
-font-size:16px;
+  color:#697386;
+  margin-top:6px;
+  margin-bottom:22px;
 }
 
 .card{
-background:#fff;
-border-radius:20px;
-padding:20px;
-margin-bottom:16px;
-box-shadow:0 4px 18px rgba(0,0,0,.06);
+  background:#fff;
+  border-radius:24px;
+  padding:22px;
+  margin-bottom:18px;
+  box-shadow:0 8px 28px rgba(20,30,55,.07);
+}
+
+.section-title{
+  font-size:21px;
+  font-weight:900;
+  margin-bottom:16px;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
 }
 
 label{
-display:block;
-font-size:14px;
-font-weight:800;
-margin-bottom:7px;
+  display:block;
+  font-weight:800;
+  margin-bottom:7px;
 }
 
 input,select{
-width:100%;
-padding:13px;
-border:1px solid #d1d5db;
-border-radius:11px;
-font-size:16px;
-background:#fff;
+  width:100%;
+  border:1px solid #d8deea;
+  border-radius:15px;
+  padding:14px;
+  font-size:17px;
+  background:#fff;
+  color:#172033;
+  outline:none;
 }
 
-.match{
-display:grid;
-grid-template-columns:1fr 70px 1fr;
-gap:12px;
-align-items:center;
-}
-
-.vs{
-font-weight:900;
-text-align:center;
-font-size:20px;
-color:#6b7280;
+input:focus,select:focus{
+  border-color:#3d63e8;
 }
 
 button{
-width:100%;
-border:0;
-border-radius:13px;
-padding:15px;
-font-size:16px;
-font-weight:900;
-cursor:pointer;
+  width:100%;
+  border:0;
+  border-radius:17px;
+  padding:16px 18px;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
 }
 
-.optimize{
-background:#2563eb;
-color:#fff;
+.primary{
+  background:#3963e8;
+  color:white;
 }
 
-.add{
-background:#e0e7ff;
-color:#3730a3;
-margin-top:10px;
+.secondary{
+  background:#e8ecf5;
+  color:#172033;
 }
 
-.reset{
-background:#e5e7eb;
-color:#111827;
-margin-top:8px;
+.green{
+  background:#dff7e5;
+  color:#22683a;
 }
 
-.remove{
-width:auto;
-padding:8px 12px;
-background:#fee2e2;
-color:#991b1b;
-font-size:13px;
+.danger{
+  background:#ffe5e5;
+  color:#9b2525;
 }
 
-.bookmaker{
-border:1px solid #e5e7eb;
-border-radius:16px;
-padding:16px;
-margin-bottom:12px;
-}
-
-.bookmaker-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-margin-bottom:14px;
-}
-
-.bookmaker-title{
-font-size:20px;
-font-weight:900;
+.auto-box{
+  background:linear-gradient(135deg,#eef3ff,#f7f9ff);
+  border:2px solid #dbe4ff;
 }
 
 .status{
-padding:15px;
-border-radius:14px;
-font-weight:900;
-margin-top:14px;
-line-height:1.5;
+  padding:15px;
+  border-radius:15px;
+  margin-top:14px;
+  font-weight:800;
+  display:none;
 }
 
-.good{
-background:#dcfce7;
-color:#166534;
+.status.ok{
+  display:block;
+  background:#e2f8e8;
+  color:#236a38;
 }
 
-.warning{
-background:#fef3c7;
-color:#92400e;
+.status.error{
+  display:block;
+  background:#ffe5e5;
+  color:#a12626;
 }
 
-.error{
-background:#fee2e2;
-color:#991b1b;
+.status.info{
+  display:block;
+  background:#edf2ff;
+  color:#3452a5;
 }
 
-.table-wrap{
-overflow-x:auto;
+.match-title{
+  font-size:24px;
+  font-weight:950;
+  margin-bottom:5px;
+}
+
+.match-date{
+  color:#697386;
+  font-size:14px;
+}
+
+.bookmaker{
+  border:1px solid #e0e5ef;
+  border-radius:20px;
+  padding:18px;
+  margin-top:14px;
+}
+
+.bookmaker-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.bookmaker-name{
+  font-size:19px;
+  font-weight:900;
+}
+
+.remove{
+  width:auto;
+  padding:8px 12px;
+  border-radius:10px;
+  font-size:13px;
+  background:#ffe8e8;
+  color:#a12626;
+}
+
+.comparison{
+  overflow-x:auto;
 }
 
 table{
-width:100%;
-border-collapse:collapse;
-min-width:650px;
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
 }
 
 th,td{
-padding:12px;
-border-bottom:1px solid #e5e7eb;
-text-align:center;
+  padding:13px 10px;
+  border-bottom:1px solid #e6e9f0;
+  text-align:center;
 }
 
 th{
-font-size:13px;
-background:#f8fafc;
+  font-size:14px;
+  color:#657084;
+}
+
+td:first-child,th:first-child{
+  text-align:left;
+  font-weight:900;
 }
 
 .best{
-font-weight:900;
-background:#dcfce7;
-color:#166534;
+  background:#ddf7e4;
+  color:#22683a;
+  font-weight:950;
+  border-radius:9px;
 }
 
-.pick-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
+.bet-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
 }
 
-.pick{
-background:#f8fafc;
-border:2px solid #e5e7eb;
-border-radius:17px;
-padding:17px;
+.bet-card{
+  border-radius:20px;
+  padding:18px;
+  background:#f7f8fc;
+  border:1px solid #e2e6ef;
 }
 
-.pick-title{
-font-size:15px;
-font-weight:900;
-margin-bottom:9px;
+.bet-label{
+  color:#697386;
+  font-size:14px;
+  font-weight:800;
 }
 
-.pick-team{
-font-size:23px;
-font-weight:900;
-margin-bottom:10px;
+.bet-team{
+  font-size:20px;
+  font-weight:950;
+  margin:5px 0 10px;
 }
 
-.pick-book{
-font-weight:800;
-color:#4b5563;
+.bet-info{
+  margin:6px 0;
 }
 
-.pick-odd{
-font-size:18px;
-margin-top:7px;
+.stake{
+  font-size:28px;
+  font-weight:950;
+  margin-top:13px;
 }
 
-.pick-stake{
-font-size:28px;
-font-weight:900;
-margin-top:11px;
+.scenario-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
 }
 
-.results{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
+.scenario{
+  border-radius:20px;
+  padding:18px;
+  background:#f7f8fc;
 }
 
-.result{
-background:#f8fafc;
-border:1px solid #e5e7eb;
-border-radius:15px;
-padding:16px;
+.scenario-title{
+  font-weight:900;
+  margin-bottom:12px;
 }
 
-.result-title{
-font-weight:900;
-margin-bottom:9px;
-}
-
-.amount{
-font-size:25px;
-font-weight:900;
+.profit{
+  font-size:27px;
+  font-weight:950;
 }
 
 .positive{
-color:#15803d;
+  color:#24733d;
 }
 
 .negative{
-color:#dc2626;
+  color:#a12626;
 }
 
 .summary{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
+  background:#dff8e5;
+  color:#27683b;
+  border-radius:22px;
+  padding:22px;
 }
 
-.summary-box{
-background:#f8fafc;
-border-radius:14px;
-padding:15px;
+.summary-title{
+  font-size:21px;
+  font-weight:950;
+  margin-bottom:18px;
 }
 
-.summary-box strong{
-display:block;
-font-size:21px;
-margin-top:5px;
+.summary-value{
+  font-size:30px;
+  font-weight:950;
+}
+
+.summary-line{
+  margin-top:10px;
+  font-size:18px;
+  font-weight:800;
 }
 
 .small{
-font-size:13px;
-line-height:1.5;
-color:#6b7280;
-margin-top:9px;
+  font-size:13px;
+  color:#727d90;
+  margin-top:8px;
 }
 
-.info{
-background:#eff6ff;
-color:#1e40af;
-padding:14px;
-border-radius:13px;
-font-size:14px;
-line-height:1.5;
-margin-top:12px;
+.hidden{
+  display:none;
 }
 
-.big-profit{
-font-size:22px;
-font-weight:900;
+.loading{
+  opacity:.65;
+  pointer-events:none;
 }
 
-@media(max-width:650px){
+@media(max-width:760px){
+  .container{
+    padding:12px;
+  }
 
-.grid,
-.pick-grid,
-.results,
-.summary{
-grid-template-columns:1fr;
-}
+  h1{
+    font-size:27px;
+  }
 
-.match{
-grid-template-columns:1fr;
-}
+  .grid,
+  .grid-3,
+  .bet-grid,
+  .scenario-grid{
+    grid-template-columns:1fr;
+  }
 
-.vs{
-padding:3px;
-}
-
-.container{
-padding:12px;
-}
-
-h1{
-font-size:27px;
-}
-
+  .card{
+    padding:17px;
+    border-radius:20px;
+  }
 }
 </style>
 </head>
@@ -330,1958 +348,1302 @@ font-size:27px;
 
 <div class="container">
 
-<h1>🔥 Surebet Optimizer</h1>
+  <div class="card">
+    <h1>⚡ SureBet Optimizer</h1>
+    <div class="subtitle">
+      Confronta le quote e distribuisci automaticamente il capitale.
+    </div>
+  </div>
 
-<div class="subtitle">
-Confronto automatico delle quote e ottimizzazione delle puntate
-</div>
+  <!-- =====================================================
+       CARICAMENTO AUTOMATICO
+       ===================================================== -->
 
+  <div class="card auto-box">
 
-<!-- PARTITA -->
+    <div class="section-title">🔄 Quote automatiche</div>
 
-<div class="card">
+    <div class="grid">
 
-<h2>⚽ Partita</h2>
+      <div>
+        <label>Partita disponibile</label>
+        <select id="matchSelect">
+          <option value="">Premi "Carica quote"</option>
+        </select>
+      </div>
 
-<div class="match">
+      <div>
+        <label>Fonte dati</label>
+        <input id="sourceInfo" value="API SureBet Optimizer" readonly>
+      </div>
 
-<div>
+    </div>
 
-<label>Squadra Casa</label>
+    <div style="margin-top:14px;">
+      <button class="primary" id="loadApiBtn">
+        🔄 CARICA QUOTE AUTOMATICAMENTE
+      </button>
+    </div>
 
-<input
-id="homeTeam"
-type="text"
-value="Inter"
->
+    <div id="apiStatus" class="status"></div>
 
-</div>
+    <div class="small">
+      Il sistema utilizza l'endpoint del tuo backend Vercel.
+    </div>
 
-<div class="vs">
-VS
-</div>
+  </div>
 
-<div>
+  <!-- =====================================================
+       PARTITA
+       ===================================================== -->
 
-<label>Squadra Ospite</label>
+  <div class="card">
 
-<input
-id="awayTeam"
-type="text"
-value="Milan"
->
+    <div class="section-title">⚽ Partita</div>
 
-</div>
+    <div class="grid">
 
-</div>
+      <div>
+        <label>Squadra Casa</label>
+        <input id="homeTeam" value="Inter">
+      </div>
 
-</div>
+      <div>
+        <label>Squadra Ospite</label>
+        <input id="awayTeam" value="Milan">
+      </div>
 
+    </div>
 
-<!-- IMPOSTAZIONI -->
+    <div style="margin-top:14px;">
+      <label>Data partita</label>
+      <input id="matchDate" value="">
+    </div>
 
-<div class="card">
+  </div>
 
-<h2>⚙️ Impostazioni</h2>
+  <!-- =====================================================
+       IMPOSTAZIONI
+       ===================================================== -->
 
-<div class="grid">
+  <div class="card">
 
-<div>
+    <div class="section-title">⚙️ Impostazioni</div>
 
-<label>Capitale totale (€)</label>
+    <div class="grid-3">
 
-<input
-id="capital"
-type="number"
-min="1"
-step="0.01"
-value="300"
->
+      <div>
+        <label>Capitale totale (€)</label>
+        <input id="capital" type="number" min="1" step="0.01" value="300">
+      </div>
 
-</div>
+      <div>
+        <label>Commissione perdite (%)</label>
+        <input id="commission" type="number" min="0" max="99" step="0.01" value="25">
+      </div>
 
-<div>
+      <div>
+        <label>Arrotondamento (€)</label>
+        <input id="rounding" type="number" min="0.01" step="0.01" value="0.10">
+      </div>
 
-<label>Provvigione sulle perdite (%)</label>
+    </div>
 
-<input
-id="commission"
-type="number"
-min="0"
-max="100"
-step="0.1"
-value="25"
->
+  </div>
 
-</div>
+  <!-- =====================================================
+       BOOKMAKER
+       ===================================================== -->
 
-<div>
+  <div class="card">
 
-<label>Arrotondamento puntate</label>
+    <div class="section-title">🏦 Quote bookmaker</div>
 
-<select id="rounding">
+    <div id="bookmakers"></div>
 
-<option value="1">€1,00</option>
+    <div style="margin-top:16px;">
+      <button class="secondary" id="addBookmaker">
+        ＋ AGGIUNGI BOOKMAKER
+      </button>
+    </div>
 
-<option value="0.10" selected>
-€0,10
-</option>
+    <div class="small">
+      Puoi aggiungere manualmente altri bookmaker. Il sistema sceglierà
+      automaticamente la quota più alta per ogni esito.
+    </div>
 
-<option value="0.01">
-€0,01
-</option>
+  </div>
 
-</select>
+  <!-- =====================================================
+       CONFRONTO
+       ===================================================== -->
 
-</div>
+  <div class="card">
 
-</div>
+    <div class="section-title">🔎 Confronto automatico</div>
 
-</div>
+    <div class="comparison">
+      <table>
+        <thead id="comparisonHead"></thead>
+        <tbody id="comparisonBody"></tbody>
+      </table>
+    </div>
 
+  </div>
 
-<!-- BOOKMAKER -->
+  <!-- =====================================================
+       OTTIMIZZA
+       ===================================================== -->
 
-<div class="card">
+  <div class="card">
 
-<h2>🏦 Quote bookmaker</h2>
+    <button class="primary" id="optimizeBtn">
+      ⚡ TROVA LE MIGLIORI QUOTE E OTTIMIZZA
+    </button>
 
-<div id="bookmakers"></div>
+    <div style="margin-top:12px;">
+      <button class="secondary" id="resetBtn">
+        RESET
+      </button>
+    </div>
 
-<button
-class="add"
-onclick="addBookmaker()"
->
-➕ AGGIUNGI BOOKMAKER
-</button>
+  </div>
 
-<div class="small">
+  <!-- =====================================================
+       DOVE SCOMMETTERE
+       ===================================================== -->
 
-Inserisci le quote offerte da ogni bookmaker.
-Il sistema confronterà automaticamente tutte le quote
-e selezionerà la migliore per ogni esito.
+  <div class="card">
 
-</div>
+    <div class="section-title">🎯 Dove scommettere</div>
 
-</div>
+    <div class="bet-grid" id="bets"></div>
 
+  </div>
 
-<!-- PULSANTI -->
+  <!-- =====================================================
+       SCENARI
+       ===================================================== -->
 
-<div class="card">
+  <div class="card">
 
-<button
-class="optimize"
-onclick="optimize()"
->
-⚡ TROVA LE MIGLIORI QUOTE E OTTIMIZZA
-</button>
+    <div class="section-title">📊 Risultato per ogni scenario</div>
 
-<button
-class="reset"
-onclick="resetCalculator()"
->
-RESET
-</button>
+    <div class="scenario-grid" id="scenarios"></div>
 
-<div id="status"></div>
+  </div>
 
-</div>
+  <!-- =====================================================
+       SUMMARY
+       ===================================================== -->
 
+  <div class="card summary">
 
-<!-- CONFRONTO -->
+    <div class="summary-title" id="summaryTitle">
+      Risultato
+    </div>
 
-<div class="card">
+    <div class="summary-value">
+      Utile minimo:
+      <span id="minProfit">0,00 €</span>
+    </div>
 
-<h2>🔎 Confronto automatico</h2>
+    <div class="summary-line">
+      ROI minimo:
+      <span id="minRoi">0,00%</span>
+    </div>
 
-<div class="table-wrap">
+    <div class="summary-line">
+      Capitale distribuito:
+      <span id="capitalUsed">0,00 €</span>
+    </div>
 
-<table>
-
-<thead id="comparisonHead"></thead>
-
-<tbody id="comparisonBody"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- DOVE SCOMMETTERE -->
-
-<div class="card">
-
-<h2>🎯 DOVE SCOMMETTERE</h2>
-
-<div class="pick-grid">
-
-
-<div class="pick">
-
-<div class="pick-title">
-1️⃣ SQUADRA CASA
-</div>
-
-<div
-id="pickHome"
-class="pick-team"
->
-Inter
-</div>
-
-<div class="pick-book">
-
-🏦
-<span id="pickBook1">-</span>
-
-</div>
-
-<div class="pick-odd">
-
-Quota
-<strong id="pickOdd1">-</strong>
+  </div>
 
 </div>
-
-<div class="pick-stake">
-
-<span id="pickStake1">€0,00</span>
-
-</div>
-
-</div>
-
-
-<div class="pick">
-
-<div class="pick-title">
-❌ PAREGGIO
-</div>
-
-<div class="pick-team">
-PAREGGIO
-</div>
-
-<div class="pick-book">
-
-🏦
-<span id="pickBookX">-</span>
-
-</div>
-
-<div class="pick-odd">
-
-Quota
-<strong id="pickOddX">-</strong>
-
-</div>
-
-<div class="pick-stake">
-
-<span id="pickStakeX">€0,00</span>
-
-</div>
-
-</div>
-
-
-<div class="pick">
-
-<div class="pick-title">
-2️⃣ SQUADRA OSPITE
-</div>
-
-<div
-id="pickAway"
-class="pick-team"
->
-Milan
-</div>
-
-<div class="pick-book">
-
-🏦
-<span id="pickBook2">-</span>
-
-</div>
-
-<div class="pick-odd">
-
-Quota
-<strong id="pickOdd2">-</strong>
-
-</div>
-
-<div class="pick-stake">
-
-<span id="pickStake2">€0,00</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="info">
-
-<strong>🎯 Indicazione automatica:</strong>
-
-il sistema seleziona per ogni esito
-il bookmaker che offre la quota migliore
-e calcola automaticamente la puntata.
-
-</div>
-
-</div>
-
-
-<!-- RISULTATI -->
-
-<div class="card">
-
-<h2>📊 Risultato nei tre scenari</h2>
-
-<div class="results">
-
-
-<div class="result">
-
-<div
-id="scenario1"
-class="result-title"
->
-Se vince Inter
-</div>
-
-<div
-id="result1"
-class="amount"
->
-€0,00
-</div>
-
-<div
-id="return1"
-class="small"
-></div>
-
-</div>
-
-
-<div class="result">
-
-<div
-class="result-title"
->
-Se esce Pareggio
-</div>
-
-<div
-id="resultX"
-class="amount"
->
-€0,00
-</div>
-
-<div
-id="returnX"
-class="small"
-></div>
-
-</div>
-
-
-<div class="result">
-
-<div
-id="scenario2"
-class="result-title"
->
-Se vince Milan
-</div>
-
-<div
-id="result2"
-class="amount"
->
-€0,00
-</div>
-
-<div
-id="return2"
-class="small"
-></div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- RIEPILOGO -->
-
-<div class="card">
-
-<h2>💰 Riepilogo</h2>
-
-<div class="summary">
-
-<div class="summary-box">
-
-Capitale investito
-
-<strong id="totalInvested">
-€0,00
-</strong>
-
-</div>
-
-
-<div class="summary-box">
-
-Utile minimo garantito
-
-<strong
-id="minimumProfit"
->
-€0,00
-</strong>
-
-</div>
-
-
-<div class="summary-box">
-
-ROI minimo
-
-<strong
-id="minimumYield"
->
-0,00%
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- SPIEGAZIONE -->
-
-<div class="card">
-
-<h2>🧮 Come viene calcolato</h2>
-
-<div class="small">
-
-Il sistema considera per ogni scenario:
-
-<br><br>
-
-<strong>
-ritorno della giocata vincente
-</strong>
-
-+
-
-<strong>
-provvigione sulle giocate perdenti
-</strong>
-
-−
-
-<strong>
-capitale totale investito
-</strong>
-
-<br><br>
-
-Le puntate vengono distribuite matematicamente
-per massimizzare il risultato dello scenario peggiore.
-
-<br><br>
-
-L'arrotondamento viene ottimizzato cercando
-la combinazione migliore vicina alla soluzione matematica.
-
-</div>
-
-</div>
-
-
-</div>
-
 
 <script>
 
+/* =========================================================
+   CONFIGURAZIONE API
+   ========================================================= */
 
-/* =====================================================
+const API_URL = "/api/odds";
+
+
+/* =========================================================
    DATI BOOKMAKER
-===================================================== */
+   ========================================================= */
 
-let bookmakerData=[
-
-{
-name:"GoldBet",
-q1:2.20,
-qx:3.50,
-q2:4.30
-},
-
-{
-name:"Sportium",
-q1:2.15,
-qx:3.60,
-q2:4.40
-},
-
-{
-name:"QuiGioco",
-q1:2.25,
-qx:3.40,
-q2:4.50
-}
-
+let bookmakerData = [
+  {
+    name: "GoldBet",
+    q1: 2.20,
+    qx: 3.50,
+    q2: 4.30
+  },
+  {
+    name: "Sportium",
+    q1: 2.15,
+    qx: 3.60,
+    q2: 4.40
+  },
+  {
+    name: "QuiGioco",
+    q1: 2.25,
+    qx: 3.40,
+    q2: 4.50
+  }
 ];
 
-
-/* =====================================================
-   EURO
-===================================================== */
-
-function euro(value){
-
-if(!Number.isFinite(value)){
-value=0;
-}
-
-return new Intl.NumberFormat(
-"it-IT",
-{
-style:"currency",
-currency:"EUR"
-}
-).format(value);
-
-}
+let apiMatches = [];
 
 
-/* =====================================================
-   QUOTA
-===================================================== */
+/* =========================================================
+   ELEMENTI
+   ========================================================= */
 
-function formatOdd(value){
+const bookmakersEl = document.getElementById("bookmakers");
+const comparisonHead = document.getElementById("comparisonHead");
+const comparisonBody = document.getElementById("comparisonBody");
 
-return Number(value)
-.toFixed(2)
-.replace(".",",");
+const homeTeamEl = document.getElementById("homeTeam");
+const awayTeamEl = document.getElementById("awayTeam");
+const matchDateEl = document.getElementById("matchDate");
 
-}
+const capitalEl = document.getElementById("capital");
+const commissionEl = document.getElementById("commission");
+const roundingEl = document.getElementById("rounding");
+
+const betsEl = document.getElementById("bets");
+const scenariosEl = document.getElementById("scenarios");
+
+const minProfitEl = document.getElementById("minProfit");
+const minRoiEl = document.getElementById("minRoi");
+const capitalUsedEl = document.getElementById("capitalUsed");
+const summaryTitleEl = document.getElementById("summaryTitle");
+
+const matchSelectEl = document.getElementById("matchSelect");
+const apiStatusEl = document.getElementById("apiStatus");
 
 
-/* =====================================================
-   NUMERO
-===================================================== */
+/* =========================================================
+   UTILITY
+   ========================================================= */
 
-function num(value){
+function money(value){
 
-if(typeof value==="number"){
-
-return Number.isFinite(value)
-?
-value
-:
-0;
-
-}
-
-let text=
-String(value)
-.trim()
-.replace(",",".")
-.replace(/[^\d.-]/g,"");
-
-let result=parseFloat(text);
-
-return Number.isFinite(result)
-?
-result
-:
-0;
+  return Number(value).toLocaleString("it-IT",{
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  }) + " €";
 
 }
 
 
-/* =====================================================
-   ESCAPE
-===================================================== */
+function number(value){
 
-function escapeHtml(text){
-
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+  return Number(value).toLocaleString("it-IT",{
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  });
 
 }
 
 
-/* =====================================================
+function cleanNumber(value){
+
+  const n = parseFloat(
+    String(value)
+      .replace(",", ".")
+      .replace(/[^\d.-]/g,"")
+  );
+
+  return Number.isFinite(n) ? n : 0;
+
+}
+
+
+/* =========================================================
+   API STATUS
+   ========================================================= */
+
+function showApiStatus(message,type){
+
+  apiStatusEl.textContent = message;
+  apiStatusEl.className = "status " + type;
+
+}
+
+
+/* =========================================================
    RENDER BOOKMAKER
-===================================================== */
+   ========================================================= */
 
 function renderBookmakers(){
 
-let container=
-document.getElementById("bookmakers");
+  bookmakersEl.innerHTML = "";
 
-container.innerHTML="";
+  bookmakerData.forEach((book,index)=>{
 
+    const wrapper = document.createElement("div");
 
-bookmakerData.forEach(
-(book,index)=>{
+    wrapper.className = "bookmaker";
 
-let div=
-document.createElement("div");
+    wrapper.innerHTML = `
 
-div.className="bookmaker";
+      <div class="bookmaker-header">
 
+        <div class="bookmaker-name">
+          🏦 ${escapeHtml(book.name)}
+        </div>
 
-div.innerHTML=`
+        <button
+          class="remove"
+          onclick="removeBookmaker(${index})"
+          ${bookmakerData.length <= 1 ? "disabled" : ""}
+        >
+          Rimuovi
+        </button>
 
-<div class="bookmaker-header">
+      </div>
 
-<div class="bookmaker-title">
-🏦 ${escapeHtml(book.name)}
-</div>
+      <div class="grid-3">
 
-${
-bookmakerData.length>1
-?
-`
-<button
-class="remove"
-onclick="removeBookmaker(${index})"
->
-Rimuovi
-</button>
-`
-:
-""
-}
+        <div>
+          <label>Quota 1</label>
+          <input
+            type="number"
+            min="1"
+            step="0.01"
+            value="${book.q1}"
+            onchange="updateBookmaker(${index},'q1',this.value)"
+          >
+        </div>
 
-</div>
+        <div>
+          <label>Quota X</label>
+          <input
+            type="number"
+            min="1"
+            step="0.01"
+            value="${book.qx}"
+            onchange="updateBookmaker(${index},'qx',this.value)"
+          >
+        </div>
 
+        <div>
+          <label>Quota 2</label>
+          <input
+            type="number"
+            min="1"
+            step="0.01"
+            value="${book.q2}"
+            onchange="updateBookmaker(${index},'q2',this.value)"
+          >
+        </div>
 
-<div class="grid">
+      </div>
 
+    `;
 
-<div>
+    bookmakersEl.appendChild(wrapper);
 
-<label>
-Nome bookmaker
-</label>
+  });
 
-<input
-type="text"
-value="${escapeHtml(book.name)}"
-oninput="
-updateBook(
-${index},
-'name',
-this.value
-)
-"
->
-
-</div>
-
-
-<div>
-
-<label>
-Quota 1
-</label>
-
-<input
-type="number"
-min="1.01"
-step="0.01"
-value="${book.q1}"
-oninput="
-updateBook(
-${index},
-'q1',
-this.value
-)
-"
->
-
-</div>
-
-
-<div>
-
-<label>
-Quota X
-</label>
-
-<input
-type="number"
-min="1.01"
-step="0.01"
-value="${book.qx}"
-oninput="
-updateBook(
-${index},
-'qx',
-this.value
-)
-"
->
-
-</div>
-
-</div>
-
-
-<div style="margin-top:12px">
-
-<label>
-Quota 2
-</label>
-
-<input
-type="number"
-min="1.01"
-step="0.01"
-value="${book.q2}"
-oninput="
-updateBook(
-${index},
-'q2',
-this.value
-)
-"
->
-
-</div>
-
-`;
-
-container.appendChild(div);
-
-});
+  renderComparison();
 
 }
 
 
-/* =====================================================
-   UPDATE
-===================================================== */
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
 
-function updateBook(
-index,
-key,
-value
-){
+function escapeHtml(value){
 
-if(key==="name"){
-
-bookmakerData[index].name=
-value;
-
-}
-else{
-
-bookmakerData[index][key]=
-num(value);
-
-}
-
-optimize();
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
-/* =====================================================
-   AGGIUNGI BOOKMAKER
-===================================================== */
+/* =========================================================
+   UPDATE BOOKMAKER
+   ========================================================= */
 
-function addBookmaker(){
+function updateBookmaker(index,key,value){
 
-let n=
-bookmakerData.length+1;
+  bookmakerData[index][key] = cleanNumber(value);
 
-
-bookmakerData.push({
-
-name:"Bookmaker "+n,
-
-q1:2.00,
-
-qx:3.00,
-
-q2:4.00
-
-});
-
-
-renderBookmakers();
-
-optimize();
+  renderComparison();
 
 }
 
 
-/* =====================================================
-   RIMUOVI
-===================================================== */
+/* =========================================================
+   REMOVE BOOKMAKER
+   ========================================================= */
 
 function removeBookmaker(index){
 
-if(bookmakerData.length<=1){
-return;
-}
+  if(bookmakerData.length <= 1){
+    return;
+  }
 
-bookmakerData.splice(
-index,
-1
-);
+  bookmakerData.splice(index,1);
 
-renderBookmakers();
-
-optimize();
+  renderBookmakers();
 
 }
 
 
-/* =====================================================
-   MIGLIORE QUOTA
-===================================================== */
+/* =========================================================
+   ADD BOOKMAKER
+   ========================================================= */
+
+function addBookmaker(){
+
+  bookmakerData.push({
+    name:"Nuovo Bookmaker",
+    q1:2.00,
+    qx:3.00,
+    q2:4.00
+  });
+
+  renderBookmakers();
+
+}
+
+
+/* =========================================================
+   BEST QUOTE
+   ========================================================= */
 
 function bestFor(type){
 
-let best=null;
+  let best = null;
 
+  bookmakerData.forEach((book,index)=>{
 
-bookmakerData.forEach(
-book=>{
+    const key =
+      type === "1" ? "q1" :
+      type === "X" ? "qx" :
+      "q2";
 
-let value=0;
+    const odds = cleanNumber(book[key]);
 
+    if(odds > 1){
 
-if(type==="1"){
-value=num(book.q1);
-}
+      if(!best || odds > best.odds){
 
-if(type==="X"){
-value=num(book.qx);
-}
+        best = {
+          index,
+          bookmaker:book.name,
+          odds
+        };
 
-if(type==="2"){
-value=num(book.q2);
-}
+      }
 
+    }
 
-if(value>=1.01){
+  });
 
-if(
-best===null ||
-value>best.odd
-){
-
-best={
-book:book.name,
-odd:value
-};
-
-}
-
-}
-
-});
-
-
-return best;
+  return best;
 
 }
 
 
-/* =====================================================
-   CALCOLO SCENARIO
-===================================================== */
+/* =========================================================
+   CONFRONTO
+   ========================================================= */
 
-function scenario(
-stakes,
-odds,
-commission,
-winner
-){
+function renderComparison(){
 
-let total=
-stakes[0]+
-stakes[1]+
-stakes[2];
+  const best1 = bestFor("1");
+  const bestX = bestFor("X");
+  const best2 = bestFor("2");
 
+  comparisonHead.innerHTML = `
+    <tr>
+      <th>Esito</th>
+      ${bookmakerData.map(book=>`
+        <th>${escapeHtml(book.name)}</th>
+      `).join("")}
+      <th>Migliore</th>
+    </tr>
+  `;
 
-let losingStake=
-total-stakes[winner];
+  const rows = [
+    {
+      label: homeTeamEl.value || "Casa",
+      type:"1",
+      key:"q1",
+      best:best1
+    },
+    {
+      label:"Pareggio",
+      type:"X",
+      key:"qx",
+      best:bestX
+    },
+    {
+      label: awayTeamEl.value || "Ospite",
+      type:"2",
+      key:"q2",
+      best:best2
+    }
+  ];
 
+  comparisonBody.innerHTML = rows.map(row=>`
 
-let winningReturn=
-stakes[winner]*odds[winner];
+    <tr>
 
+      <td>${escapeHtml(row.label)}</td>
 
-let commissionAmount=
-losingStake*commission;
+      ${bookmakerData.map(book=>{
 
+        const odds = cleanNumber(book[row.key]);
 
-return (
-winningReturn+
-commissionAmount-
-total
-);
+        const isBest =
+          row.best &&
+          odds === row.best.odds;
+
+        return `
+          <td class="${isBest ? "best" : ""}">
+            ${odds > 1 ? odds.toFixed(2) : "-"}
+          </td>
+        `;
+
+      }).join("")}
+
+      <td class="best">
+        ${row.best ? row.best.odds.toFixed(2) : "-"}
+      </td>
+
+    </tr>
+
+  `).join("");
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SOLUZIONE MATEMATICA
-===================================================== */
+   ========================================================= */
 
-function mathematicalSolution(
-capital,
-odds,
-commission
-){
+function mathematicalSolution(total,odds,commission){
 
-let weights=[];
+  const denominators = odds.map(q => q - commission);
 
+  if(
+    denominators.some(x => x <= 0) ||
+    odds.some(q => q <= 1)
+  ){
+    return null;
+  }
 
-for(
-let i=0;
-i<3;
-i++
-){
+  const reciprocalSum =
+    denominators.reduce(
+      (sum,value)=>sum + 1/value,
+      0
+    );
 
-let denominator=
-odds[i]-commission;
-
-
-if(denominator<=0){
-return null;
-}
-
-
-weights.push(
-1/denominator
-);
+  return denominators.map(value =>
+    total * ((1/value) / reciprocalSum)
+  );
 
 }
 
 
-let weightTotal=
-weights.reduce(
-(a,b)=>a+b,
-0
-);
+/* =========================================================
+   RISULTATO SCENARIO
+   ========================================================= */
 
+function scenario(stakes,odds,commission,winner){
 
-return weights.map(
-w=>
-capital*w/weightTotal
-);
+  const total = stakes.reduce(
+    (sum,value)=>sum + value,
+    0
+  );
+
+  const winningReturn =
+    stakes[winner] * odds[winner];
+
+  const losingCapital =
+    total - stakes[winner];
+
+  const commissionAmount =
+    commission * losingCapital;
+
+  return (
+    winningReturn +
+    commissionAmount -
+    total
+  );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    OTTIMIZZAZIONE ARROTONDATA
-===================================================== */
+   ========================================================= */
 
-function roundedSolution(
-capital,
-odds,
-commission,
-rounding
-){
+function roundedSolution(total,odds,commission,step){
 
-let raw=
-mathematicalSolution(
-capital,
-odds,
-commission
-);
+  const exact = mathematicalSolution(
+    total,
+    odds,
+    commission
+  );
 
+  if(!exact){
+    return null;
+  }
 
-if(!raw){
-return null;
-}
+  if(step <= 0){
+    return exact;
+  }
 
+  const base = exact.map(value =>
+    Math.round(value / step) * step
+  );
 
-let best=null;
+  let best = null;
+  let bestMin = -Infinity;
 
+  const radius = 8;
 
-/*
-Cerchiamo tutte le combinazioni
-ragionevolmente vicine alla soluzione
-matematica.
+  for(let a=-radius;a<=radius;a++){
 
-La terza puntata è sempre il residuo.
-*/
+    for(let b=-radius;b<=radius;b++){
 
-let base1=
-Math.round(
-raw[0]/rounding
-);
+      const s1 =
+        Math.round((base[0] + a*step)*100)/100;
 
-let base2=
-Math.round(
-raw[1]/rounding
-);
+      const s2 =
+        Math.round((base[1] + b*step)*100)/100;
 
+      const s3 =
+        Math.round((total - s1 - s2)*100)/100;
 
-/*
-Per capitali più grandi il range
-viene mantenuto proporzionato.
-*/
+      if(s1 < 0 || s2 < 0 || s3 < 0){
+        continue;
+      }
 
-let range=
-Math.max(
-30,
-Math.min(
-150,
-Math.ceil(
-capital/rounding*0.05
-)
-)
-);
+      const stakes = [s1,s2,s3];
 
+      const results = [
+        scenario(stakes,odds,commission,0),
+        scenario(stakes,odds,commission,1),
+        scenario(stakes,odds,commission,2)
+      ];
 
-for(
-let i=base1-range;
-i<=base1+range;
-i++
-){
+      const minResult = Math.min(...results);
 
-if(i<0){
-continue;
-}
+      if(minResult > bestMin){
 
+        bestMin = minResult;
 
-let stake1=
-Number(
-(i*rounding)
-.toFixed(2)
-);
+        best = stakes;
 
+      }
 
-for(
-let j=base2-range;
-j<=base2+range;
-j++
-){
+    }
 
-if(j<0){
-continue;
-}
+  }
 
-
-let stakeX=
-Number(
-(j*rounding)
-.toFixed(2)
-);
-
-
-let stake2=
-Number(
-(
-capital-
-stake1-
-stakeX
-)
-.toFixed(2)
-);
-
-
-if(stake2<0){
-continue;
-}
-
-
-/*
-Controllo importante:
-il totale deve essere ESATTAMENTE
-uguale al capitale.
-*/
-
-let total=
-Number(
-(
-stake1+
-stakeX+
-stake2
-)
-.toFixed(2)
-);
-
-
-if(
-Math.abs(total-capital)>0.001
-){
-
-continue;
+  return best;
 
 }
 
 
-let stakes=[
-stake1,
-stakeX,
-stake2
-];
-
-
-let results=[
-
-scenario(
-stakes,
-odds,
-commission,
-0
-),
-
-scenario(
-stakes,
-odds,
-commission,
-1
-),
-
-scenario(
-stakes,
-odds,
-commission,
-2
-)
-
-];
-
-
-let minimum=
-Math.min(...results);
-
-
-/*
-Distanza dalla soluzione matematica.
-*/
-
-let distance=
-Math.abs(
-stake1-raw[0]
-)+
-Math.abs(
-stakeX-raw[1]
-)+
-Math.abs(
-stake2-raw[2]
-);
-
-
-/*
-Massimizziamo prima l'utile minimo.
-*/
-
-if(
-best===null ||
-minimum>best.minimum+0.000001 ||
-(
-Math.abs(
-minimum-best.minimum
-)<0.000001 &&
-distance<best.distance
-)
-){
-
-best={
-
-stakes:stakes,
-
-results:results,
-
-minimum:minimum,
-
-distance:distance
-
-};
-
-}
-
-}
-
-}
-
-
-return best;
-
-}
-
-
-/* =====================================================
-   TABELLA CONFRONTO
-===================================================== */
-
-function renderComparison(
-home,
-away,
-best1,
-bestX,
-best2
-){
-
-let head=
-document.getElementById(
-"comparisonHead"
-);
-
-let body=
-document.getElementById(
-"comparisonBody"
-);
-
-
-head.innerHTML="";
-body.innerHTML="";
-
-
-let header=
-document.createElement("tr");
-
-
-let outcome=
-document.createElement("th");
-
-outcome.textContent=
-"ESITO";
-
-header.appendChild(
-outcome
-);
-
-
-bookmakerData.forEach(
-book=>{
-
-let th=
-document.createElement("th");
-
-th.textContent=
-book.name;
-
-header.appendChild(th);
-
-});
-
-
-let bestHeader=
-document.createElement("th");
-
-bestHeader.textContent=
-"MIGLIORE";
-
-header.appendChild(
-bestHeader
-);
-
-
-head.appendChild(
-header
-);
-
-
-let rows=[
-
-{
-label:home,
-type:"1",
-best:best1
-},
-
-{
-label:"PAREGGIO",
-type:"X",
-best:bestX
-},
-
-{
-label:away,
-type:"2",
-best:best2
-}
-
-];
-
-
-rows.forEach(
-row=>{
-
-let tr=
-document.createElement("tr");
-
-
-let label=
-document.createElement("td");
-
-label.textContent=
-row.label;
-
-tr.appendChild(label);
-
-
-bookmakerData.forEach(
-book=>{
-
-let td=
-document.createElement("td");
-
-let value=0;
-
-
-if(row.type==="1"){
-value=num(book.q1);
-}
-
-if(row.type==="X"){
-value=num(book.qx);
-}
-
-if(row.type==="2"){
-value=num(book.q2);
-}
-
-
-td.textContent=
-value>=1.01
-?
-formatOdd(value)
-:
-"-";
-
-
-if(
-row.best &&
-book.name===row.best.book
-){
-
-td.className="best";
-
-}
-
-
-tr.appendChild(td);
-
-});
-
-
-let bestTd=
-document.createElement("td");
-
-bestTd.className="best";
-
-
-bestTd.textContent=
-row.best
-?
-row.best.book+
-" @ "+
-formatOdd(row.best.odd)
-:
-"-";
-
-
-tr.appendChild(bestTd);
-
-body.appendChild(tr);
-
-});
-
-}
-
-
-/* =====================================================
-   CALCOLO PRINCIPALE
-===================================================== */
+/* =========================================================
+   OTTIMIZZA
+   ========================================================= */
 
 function optimize(){
 
-let capital=
-num(
-document.getElementById(
-"capital"
-).value
-);
+  const total = cleanNumber(capitalEl.value);
 
+  const commissionPercent =
+    cleanNumber(commissionEl.value);
 
-let commission=
-num(
-document.getElementById(
-"commission"
-).value
-)/100;
+  const commission =
+    commissionPercent / 100;
 
+  const rounding =
+    cleanNumber(roundingEl.value);
 
-let rounding=
-num(
-document.getElementById(
-"rounding"
-).value
-);
+  if(total <= 0){
 
+    alert("Inserisci un capitale valido.");
 
-let home=
-document.getElementById(
-"homeTeam"
-).value.trim();
+    return;
 
+  }
 
-let away=
-document.getElementById(
-"awayTeam"
-).value.trim();
+  const best1 = bestFor("1");
+  const bestX = bestFor("X");
+  const best2 = bestFor("2");
 
+  if(!best1 || !bestX || !best2){
 
-if(!home){
-home="Squadra Casa";
-}
+    alert("Inserisci quote valide per tutti gli esiti.");
 
-if(!away){
-away="Squadra Ospite";
-}
+    return;
 
+  }
 
-let status=
-document.getElementById(
-"status"
-);
+  const odds = [
+    best1.odds,
+    bestX.odds,
+    best2.odds
+  ];
 
+  let stakes =
+    roundedSolution(
+      total,
+      odds,
+      commission,
+      rounding
+    );
 
-if(capital<=0){
+  if(!stakes){
 
-status.innerHTML=`
+    alert(
+      "Impossibile calcolare la soluzione. " +
+      "Controlla quote e commissione."
+    );
 
-<div class="status error">
+    return;
 
-❌ Inserisci un capitale valido.
+  }
 
-</div>
+  /*
+   * Correzione finale per garantire che
+   * il capitale distribuito sia esattamente
+   * uguale al capitale inserito.
+   */
 
-`;
+  let difference =
+    Math.round(
+      (total - stakes.reduce((a,b)=>a+b,0))*100
+    ) / 100;
 
-return;
+  stakes[2] =
+    Math.round((stakes[2] + difference)*100)/100;
 
-}
+  const results = [
+    scenario(stakes,odds,commission,0),
+    scenario(stakes,odds,commission,1),
+    scenario(stakes,odds,commission,2)
+  ];
 
+  const minProfit =
+    Math.min(...results);
 
-if(
-commission<0 ||
-commission>1
-){
+  const minRoi =
+    total > 0
+      ? (minProfit / total) * 100
+      : 0;
 
-status.innerHTML=`
+  renderBets(
+    stakes,
+    [best1,bestX,best2]
+  );
 
-<div class="status error">
+  renderScenarios(
+    results,
+    [best1,bestX,best2]
+  );
 
-❌ La provvigione deve essere compresa tra 0% e 100%.
+  minProfitEl.textContent =
+    money(minProfit);
 
-</div>
+  minRoiEl.textContent =
+    number(minRoi) + "%";
 
-`;
+  capitalUsedEl.textContent =
+    money(stakes.reduce((a,b)=>a+b,0));
 
-return;
+  if(minProfit >= 0){
 
-}
+    summaryTitleEl.textContent =
+      "✅ UTILE POSITIVO GARANTITO";
 
+  }else{
 
-if(rounding<=0){
-rounding=0.01;
-}
+    summaryTitleEl.textContent =
+      "⚠️ NESSUN UTILE GARANTITO";
 
-
-let best1=
-bestFor("1");
-
-let bestX=
-bestFor("X");
-
-let best2=
-bestFor("2");
-
-
-if(
-!best1 ||
-!bestX ||
-!best2
-){
-
-status.innerHTML=`
-
-<div class="status error">
-
-❌ Inserisci quote valide per 1, X e 2.
-
-</div>
-
-`;
-
-return;
+  }
 
 }
 
 
-let odds=[
+/* =========================================================
+   DOVE SCOMMETTERE
+   ========================================================= */
 
-best1.odd,
-bestX.odd,
-best2.odd
+function renderBets(stakes,bests){
 
-];
+  const home =
+    homeTeamEl.value || "Casa";
 
+  const away =
+    awayTeamEl.value || "Ospite";
 
-let result=
-roundedSolution(
-capital,
-odds,
-commission,
-rounding
-);
+  const data = [
 
+    {
+      label:"ESITO 1",
+      team:home,
+      result:"1",
+      best:bests[0],
+      stake:stakes[0]
+    },
 
-if(!result){
+    {
+      label:"ESITO X",
+      team:"Pareggio",
+      result:"X",
+      best:bests[1],
+      stake:stakes[1]
+    },
 
-status.innerHTML=`
+    {
+      label:"ESITO 2",
+      team:away,
+      result:"2",
+      best:bests[2],
+      stake:stakes[2]
+    }
 
-<div class="status error">
+  ];
 
-❌ Impossibile calcolare con queste quote.
+  betsEl.innerHTML = data.map(item=>`
 
-</div>
+    <div class="bet-card">
 
-`;
+      <div class="bet-label">
+        ${item.label}
+      </div>
 
-return;
+      <div class="bet-team">
+        ${escapeHtml(item.team)}
+      </div>
+
+      <div class="bet-info">
+        🏦 <strong>${escapeHtml(item.best.bookmaker)}</strong>
+      </div>
+
+      <div class="bet-info">
+        Quota:
+        <strong>${item.best.odds.toFixed(2)}</strong>
+      </div>
+
+      <div class="stake">
+        ${money(item.stake)}
+      </div>
+
+    </div>
+
+  `).join("");
 
 }
 
 
-let stakes=
-result.stakes;
+/* =========================================================
+   SCENARI
+   ========================================================= */
 
+function renderScenarios(results,bests){
 
-let results=
-result.results;
+  const home =
+    homeTeamEl.value || "Casa";
 
+  const away =
+    awayTeamEl.value || "Ospite";
 
-renderComparison(
-home,
-away,
-best1,
-bestX,
-best2
-);
+  const data = [
 
+    {
+      title:`Se vince ${home}`,
+      result:results[0]
+    },
 
-/* DOVE SCOMMETTERE */
+    {
+      title:"Se finisce in pareggio",
+      result:results[1]
+    },
 
-document.getElementById(
-"pickHome"
-).textContent=
-home;
+    {
+      title:`Se vince ${away}`,
+      result:results[2]
+    }
 
+  ];
 
-document.getElementById(
-"pickAway"
-).textContent=
-away;
+  scenariosEl.innerHTML =
+    data.map(item=>`
 
+      <div class="scenario">
 
-document.getElementById(
-"pickBook1"
-).textContent=
-best1.book;
+        <div class="scenario-title">
+          ${escapeHtml(item.title)}
+        </div>
 
+        <div class="
+          profit
+          ${item.result >= 0 ? "positive" : "negative"}
+        ">
+          ${item.result >= 0 ? "+" : ""}
+          ${money(item.result)}
+        </div>
 
-document.getElementById(
-"pickBookX"
-).textContent=
-bestX.book;
+      </div>
 
-
-document.getElementById(
-"pickBook2"
-).textContent=
-best2.book;
-
-
-document.getElementById(
-"pickOdd1"
-).textContent=
-formatOdd(best1.odd);
-
-
-document.getElementById(
-"pickOddX"
-).textContent=
-formatOdd(bestX.odd);
-
-
-document.getElementById(
-"pickOdd2"
-).textContent=
-formatOdd(best2.odd);
-
-
-document.getElementById(
-"pickStake1"
-).textContent=
-euro(stakes[0]);
-
-
-document.getElementById(
-"pickStakeX"
-).textContent=
-euro(stakes[1]);
-
-
-document.getElementById(
-"pickStake2"
-).textContent=
-euro(stakes[2]);
-
-
-/* SCENARI */
-
-document.getElementById(
-"scenario1"
-).textContent=
-"Se vince "+home;
-
-
-document.getElementById(
-"scenario2"
-).textContent=
-"Se vince "+away;
-
-
-/* RISULTATI */
-
-showResult(
-"result1",
-results[0]
-);
-
-showResult(
-"resultX",
-results[1]
-);
-
-showResult(
-"result2",
-results[2]
-);
-
-
-/* RITORNI */
-
-document.getElementById(
-"return1"
-).textContent=
-"Ritorno quota vincente: "+
-euro(
-stakes[0]*best1.odd
-);
-
-
-document.getElementById(
-"returnX"
-).textContent=
-"Ritorno quota vincente: "+
-euro(
-stakes[1]*bestX.odd
-);
-
-
-document.getElementById(
-"return2"
-).textContent=
-"Ritorno quota vincente: "+
-euro(
-stakes[2]*best2.odd
-);
-
-
-/* RIEPILOGO */
-
-let total=
-Number(
-(
-stakes[0]+
-stakes[1]+
-stakes[2]
-).toFixed(2)
-);
-
-
-let minimum=
-Math.min(...results);
-
-
-let roi=
-capital>0
-?
-minimum/capital*100
-:
-0;
-
-
-document.getElementById(
-"totalInvested"
-).textContent=
-euro(total);
-
-
-document.getElementById(
-"minimumProfit"
-).textContent=
-(minimum>=0?"+":"")+
-euro(minimum);
-
-
-document.getElementById(
-"minimumYield"
-).textContent=
-roi.toFixed(2)+"%";
-
-
-/* STATO */
-
-if(minimum>=0){
-
-status.innerHTML=`
-
-<div class="status good">
-
-✅ UTILE POSITIVO GARANTITO
-
-<br><br>
-
-Utile minimo:
-<strong class="big-profit">
-${euro(minimum)}
-</strong>
-
-<br>
-
-ROI minimo:
-<strong>
-${roi.toFixed(2)}%
-</strong>
-
-<br><br>
-
-Capitale distribuito:
-<strong>
-${euro(total)}
-</strong>
-
-</div>
-
-`;
-
-}else{
-
-status.innerHTML=`
-
-<div class="status warning">
-
-⚠️ NESSUN UTILE GARANTITO
-
-<br><br>
-
-Risultato peggiore:
-<strong>
-${euro(minimum)}
-</strong>
-
-</div>
-
-`;
-
-}
+    `).join("");
 
 }
 
 
-/* =====================================================
-   RISULTATO
-===================================================== */
+/* =========================================================
+   CARICA API
+   ========================================================= */
 
-function showResult(
-id,
-value
-){
+async function loadApi(){
 
-let element=
-document.getElementById(id);
+  const button =
+    document.getElementById("loadApiBtn");
 
+  button.classList.add("loading");
+  button.textContent = "⏳ CARICAMENTO...";
 
-element.textContent=
-(value>=0?"+":"")+
-euro(value);
+  showApiStatus(
+    "Connessione al backend...",
+    "info"
+  );
 
+  try{
 
-element.className=
-"amount "+
-(
-value>=0
-?
-"positive"
-:
-"negative"
-);
+    const response =
+      await fetch(API_URL,{
+        method:"GET",
+        cache:"no-store"
+      });
+
+    if(!response.ok){
+
+      throw new Error(
+        "Errore HTTP " + response.status
+      );
+
+    }
+
+    const data =
+      await response.json();
+
+    if(
+      !data ||
+      data.success !== true ||
+      !Array.isArray(data.matches)
+    ){
+
+      throw new Error(
+        "Risposta API non valida"
+      );
+
+    }
+
+    apiMatches = data.matches;
+
+    matchSelectEl.innerHTML = "";
+
+    if(apiMatches.length === 0){
+
+      matchSelectEl.innerHTML =
+        `<option value="">Nessuna partita</option>`;
+
+      showApiStatus(
+        "Nessuna partita disponibile.",
+        "info"
+      );
+
+      return;
+
+    }
+
+    apiMatches.forEach((match,index)=>{
+
+      const option =
+        document.createElement("option");
+
+      option.value = index;
+
+      option.textContent =
+        `${match.home} - ${match.away}`;
+
+      matchSelectEl.appendChild(option);
+
+    });
+
+    applyApiMatch(0);
+
+    showApiStatus(
+      `✅ Quote caricate correttamente: ${apiMatches.length} partite disponibili.`,
+      "ok"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showApiStatus(
+      "❌ Impossibile caricare le quote: " +
+      error.message,
+      "error"
+    );
+
+  }finally{
+
+    button.classList.remove("loading");
+
+    button.textContent =
+      "🔄 CARICA QUOTE AUTOMATICAMENTE";
+
+  }
 
 }
 
 
-/* =====================================================
-   RESET
-===================================================== */
+/* =========================================================
+   APPLICA PARTITA API
+   ========================================================= */
 
-function resetCalculator(){
+function applyApiMatch(index){
 
-bookmakerData=[
+  const match =
+    apiMatches[index];
 
-{
-name:"GoldBet",
-q1:2.20,
-qx:3.50,
-q2:4.30
-},
+  if(!match){
+    return;
+  }
 
-{
-name:"Sportium",
-q1:2.15,
-qx:3.60,
-q2:4.40
-},
+  homeTeamEl.value =
+    match.home || "";
 
-{
-name:"QuiGioco",
-q1:2.25,
-qx:3.40,
-q2:4.50
-}
+  awayTeamEl.value =
+    match.away || "";
 
-];
+  matchDateEl.value =
+    formatDate(match.date);
 
+  if(
+    Array.isArray(match.bookmakers) &&
+    match.bookmakers.length
+  ){
 
-document.getElementById(
-"homeTeam"
-).value=
-"Inter";
+    bookmakerData =
+      match.bookmakers.map(book=>({
 
+        name:
+          book.name || "Bookmaker",
 
-document.getElementById(
-"awayTeam"
-).value=
-"Milan";
+        q1:
+          cleanNumber(
+            book.odds?.home
+          ),
 
+        qx:
+          cleanNumber(
+            book.odds?.draw
+          ),
 
-document.getElementById(
-"capital"
-).value=
-300;
+        q2:
+          cleanNumber(
+            book.odds?.away
+          )
 
+      }));
 
-document.getElementById(
-"commission"
-).value=
-25;
+  }
 
+  renderBookmakers();
 
-document.getElementById(
-"rounding"
-).value=
-0.10;
-
-
-renderBookmakers();
-
-optimize();
+  renderComparison();
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   FORMAT DATA
+   ========================================================= */
+
+function formatDate(value){
+
+  if(!value){
+    return "";
+  }
+
+  try{
+
+    const date =
+      new Date(value);
+
+    if(Number.isNaN(date.getTime())){
+      return value;
+    }
+
+    return date.toLocaleString(
+      "it-IT",
+      {
+        dateStyle:"medium",
+        timeStyle:"short"
+      }
+    );
+
+  }catch{
+
+    return value;
+
+  }
+
+}
+
+
+/* =========================================================
    EVENTI
-===================================================== */
+   ========================================================= */
 
-document.getElementById(
-"homeTeam"
-).addEventListener(
-"input",
-optimize
+document
+  .getElementById("addBookmaker")
+  .addEventListener(
+    "click",
+    addBookmaker
+  );
+
+document
+  .getElementById("optimizeBtn")
+  .addEventListener(
+    "click",
+    optimize
+  );
+
+document
+  .getElementById("loadApiBtn")
+  .addEventListener(
+    "click",
+    loadApi
+  );
+
+matchSelectEl
+  .addEventListener(
+    "change",
+    event => {
+
+      const index =
+        Number(event.target.value);
+
+      applyApiMatch(index);
+
+    }
+  );
+
+
+homeTeamEl.addEventListener(
+  "input",
+  renderComparison
+);
+
+awayTeamEl.addEventListener(
+  "input",
+  renderComparison
 );
 
 
-document.getElementById(
-"awayTeam"
-).addEventListener(
-"input",
-optimize
-);
+/* =========================================================
+   RESET
+   ========================================================= */
+
+document
+  .getElementById("resetBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      homeTeamEl.value = "Inter";
+      awayTeamEl.value = "Milan";
+      matchDateEl.value = "";
+
+      capitalEl.value = 300;
+      commissionEl.value = 25;
+      roundingEl.value = 0.10;
+
+      bookmakerData = [
+
+        {
+          name:"GoldBet",
+          q1:2.20,
+          qx:3.50,
+          q2:4.30
+        },
+
+        {
+          name:"Sportium",
+          q1:2.15,
+          qx:3.60,
+          q2:4.40
+        },
+
+        {
+          name:"QuiGioco",
+          q1:2.25,
+          qx:3.40,
+          q2:4.50
+        }
+
+      ];
+
+      matchSelectEl.innerHTML =
+        `<option value="">Premi "Carica quote"</option>`;
+
+      betsEl.innerHTML = "";
+      scenariosEl.innerHTML = "";
+
+      minProfitEl.textContent =
+        "0,00 €";
+
+      minRoiEl.textContent =
+        "0,00%";
+
+      capitalUsedEl.textContent =
+        "0,00 €";
+
+      summaryTitleEl.textContent =
+        "Risultato";
+
+      apiStatusEl.className =
+        "status";
+
+      apiStatusEl.textContent = "";
+
+      renderBookmakers();
+
+    }
+  );
 
 
-document.getElementById(
-"capital"
-).addEventListener(
-"input",
-optimize
-);
-
-
-document.getElementById(
-"commission"
-).addEventListener(
-"input",
-optimize
-);
-
-
-document.getElementById(
-"rounding"
-).addEventListener(
-"change",
-optimize
-);
-
-
-/* =====================================================
+/* =========================================================
    AVVIO
-===================================================== */
+   ========================================================= */
 
 renderBookmakers();
-
-optimize();
 
 </script>
 
