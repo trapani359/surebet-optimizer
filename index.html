@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surebet Optimizer</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f4f6f8;
+  color:#111827;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+h1{
+  margin:0 0 6px;
+  font-size:28px;
+}
+
+.subtitle{
+  color:#6b7280;
+  margin-bottom:20px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+label{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:16px;
+  background:white;
+}
+
+.book{
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:15px;
+}
+
+.book h3{
+  margin:0 0 12px;
+}
+
+button{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:14px;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.optimize{
+  background:#2563eb;
+  color:white;
+}
+
+.reset{
+  margin-top:8px;
+  background:#e5e7eb;
+  color:#111827;
+}
+
+.results{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.result{
+  padding:15px;
+  border-radius:14px;
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+}
+
+.result h3{
+  margin:0 0 8px;
+}
+
+.amount{
+  font-size:24px;
+  font-weight:900;
+}
+
+.positive{
+  color:#15803d;
+}
+
+.negative{
+  color:#dc2626;
+}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.summaryBox{
+  background:#f8fafc;
+  padding:14px;
+  border-radius:12px;
+}
+
+.summaryBox strong{
+  display:block;
+  font-size:20px;
+  margin-top:5px;
+}
+
+.status{
+  padding:12px;
+  border-radius:12px;
+  font-weight:800;
+  margin-top:12px;
+}
+
+.good{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.warning{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.small{
+  font-size:13px;
+  color:#6b7280;
+  margin-top:8px;
+}
+
+@media(max-width:650px){
+  .grid,
+  .results,
+  .summary{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔥 Surebet Optimizer</h1>
+<div class="subtitle">
+Calcolatore 1X2 con ottimizzazione automatica delle puntate
+</div>
+
+<div class="card">
+
+<h2>Impostazioni</h2>
+
+<div class="grid">
+
+<div>
+<label>Capitale totale (€)</label>
+<input id="capital" type="number" min="1" step="0.01" value="300">
+</div>
+
+<div>
+<label>Provvigione sulle perdite (%)</label>
+<input id="commission" type="number" min="0" max="100" step="0.1" value="25">
+</div>
+
+<div>
+<label>Arrotondamento</label>
+<select id="rounding">
+<option value="1">€1</option>
+<option value="0.10" selected>€0,10</option>
+<option value="0.01">€0,01</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Quote</h2>
+
+<div class="grid">
+
+<div class="book">
+
+<h3>1 — GoldBet</h3>
+
+<label>Quota 1</label>
+<input id="odd1" type="number" min="1.01" step="0.01" value="2.20">
+
+</div>
+
+
+<div class="book">
+
+<h3>X — Sportium</h3>
+
+<label>Quota X</label>
+<input id="oddX" type="number" min="1.01" step="0.01" value="3.60">
+
+</div>
+
+
+<div class="book">
+
+<h3>2 — QuiGioco</h3>
+
+<label>Quota 2</label>
+<input id="odd2" type="number" min="1.01" step="0.01" value="4.50">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<button class="optimize" onclick="optimize()">
+⚡ OTTIMIZZA AUTOMATICAMENTE LE PUNTATE
+</button>
+
+<button class="reset" onclick="resetCalculator()">
+RESET
+</button>
+
+<div id="status"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>💰 Distribuzione ottimale</h2>
+
+<div class="grid">
+
+<div>
+<label>Giocata 1</label>
+<div id="stake1" class="amount">€0,00</div>
+</div>
+
+<div>
+<label>Giocata X</label>
+<div id="stakeX" class="amount">€0,00</div>
+</div>
+
+<div>
+<label>Giocata 2</label>
+<div id="stake2" class="amount">€0,00</div>
+</div>
+
+</div>
+
+<div class="small">
+La distribuzione viene calcolata in base alle quote e non divide semplicemente il capitale in tre parti uguali.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Risultato nei tre scenari</h2>
+
+<div class="results">
+
+<div class="result">
+
+<h3>Se vince 1</h3>
+
+<div id="result1" class="amount">
+€0,00
+</div>
+
+<div id="return1" class="small"></div>
+
+</div>
+
+
+<div class="result">
+
+<h3>Se esce X</h3>
+
+<div id="resultX" class="amount">
+€0,00
+</div>
+
+<div id="returnX" class="small"></div>
+
+</div>
+
+
+<div class="result">
+
+<h3>Se vince 2</h3>
+
+<div id="result2" class="amount">
+€0,00
+</div>
+
+<div id="return2" class="small"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📈 Riepilogo</h2>
+
+<div class="summary">
+
+<div class="summaryBox">
+Capitale investito
+<strong id="totalInvested">€0,00</strong>
+</div>
+
+<div class="summaryBox">
+Utile minimo
+<strong id="minimumProfit">€0,00</strong>
+</div>
+
+<div class="summaryBox">
+Rendimento minimo
+<strong id="minimumYield">0,00%</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🧮 Come viene calcolato</h2>
+
+<div class="small">
+
+Per ogni scenario viene considerato:
+
+<br><br>
+
+<strong>Ritorno della giocata vincente</strong>
+
++
+
+<strong>25% delle due perdite</strong>
+
+−
+
+<strong>capitale totale giocato</strong>
+
+<br><br>
+
+L'ottimizzatore cerca di distribuire il capitale in modo da rendere il più alto possibile il risultato dello scenario peggiore.
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function euro(value){
+
+return new Intl.NumberFormat("it-IT",{
+style:"currency",
+currency:"EUR"
+}).format(value);
+
+}
+
+
+function getNumber(id){
+
+let value=parseFloat(document.getElementById(id).value);
+
+if(!isFinite(value) || value<0){
+return 0;
+}
+
+return value;
+
+}
+
+
+function calculateScenario(stakes,odds,commission,winner){
+
+let total=stakes[0]+stakes[1]+stakes[2];
+
+let losingStake=total-stakes[winner];
+
+let winningReturn=stakes[winner]*odds[winner];
+
+let commissionAmount=losingStake*commission;
+
+return winningReturn+commissionAmount-total;
+
+}
+
+
+function optimize(){
+
+let capital=getNumber("capital");
+
+let commission=getNumber("commission")/100;
+
+let q1=Math.max(1.01,getNumber("odd1"));
+
+let qX=Math.max(1.01,getNumber("oddX"));
+
+let q2=Math.max(1.01,getNumber("odd2"));
+
+let rounding=getNumber("rounding");
+
+if(capital<=0){
+
+document.getElementById("status").innerHTML=
+'<div class="status warning">Inserisci un capitale valido.</div>';
+
+return;
+
+}
+
+if(rounding<=0){
+rounding=0.01;
+}
+
+
+let odds=[q1,qX,q2];
+
+
+/*
+
+Formula:
+
+Risultato scenario i =
+
+stake_i × quota_i
++
+commissione × (capitale - stake_i)
+-
+capitale
+
+Per equalizzare i tre risultati:
+
+stake_i ∝ 1 / (quota_i - commissione)
+
+*/
+
+let weights=[];
+
+for(let i=0;i<3;i++){
+
+let denominator=odds[i]-commission;
+
+if(denominator<=0){
+denominator=0.01;
+}
+
+weights.push(1/denominator);
+
+}
+
+
+let weightTotal=
+weights[0]+weights[1]+weights[2];
+
+
+let stakes=weights.map(
+w=>capital*w/weightTotal
+);
+
+
+/*
+
+Arrotondamento delle puntate.
+
+Le prime due vengono arrotondate,
+la terza riceve il residuo per garantire
+che la somma sia esattamente il capitale.
+
+*/
+
+let s1=Math.round(stakes[0]/rounding)*rounding;
+
+let sX=Math.round(stakes[1]/rounding)*rounding;
+
+let s2=capital-s1-sX;
+
+if(s2<0){
+
+s2=0;
+
+let remaining=capital-s2;
+
+s1=Math.min(s1,remaining);
+
+sX=remaining-s1;
+
+}
+
+
+s1=Number(s1.toFixed(2));
+sX=Number(sX.toFixed(2));
+s2=Number(s2.toFixed(2));
+
+
+let finalStakes=[s1,sX,s2];
+
+let finalOdds=odds;
+
+
+let results=[
+
+calculateScenario(
+finalStakes,
+finalOdds,
+commission,
+0
+),
+
+calculateScenario(
+finalStakes,
+finalOdds,
+commission,
+1
+),
+
+calculateScenario(
+finalStakes,
+finalOdds,
+commission,
+2
+)
+
+];
+
+
+document.getElementById("stake1").textContent=euro(s1);
+
+document.getElementById("stakeX").textContent=euro(sX);
+
+document.getElementById("stake2").textContent=euro(s2);
+
+
+showResult("result1","return1",results[0],s1*q1);
+
+showResult("resultX","returnX",results[1],sX*qX);
+
+showResult("result2","return2",results[2],s2*q2);
+
+
+let minimum=Math.min(
+results[0],
+results[1],
+results[2]
+);
+
+
+let yieldPercent=(minimum/capital)*100;
+
+
+document.getElementById("totalInvested").textContent=
+euro(capital);
+
+
+document.getElementById("minimumProfit").textContent=
+(minimum>=0?"+":"")+euro(minimum);
+
+
+document.getElementById("minimumYield").textContent=
+yieldPercent.toFixed(2)+"%";
+
+
+let status=document.getElementById("status");
+
+
+if(minimum>=0){
+
+status.innerHTML=
+'<div class="status good">✅ UTILE POSITIVO IN TUTTI I TRE SCENARI</div>';
+
+}else{
+
+status.innerHTML=
+'<div class="status warning">⚠️ Con queste quote non è garantito un utile in tutti gli scenari.</div>';
+
+}
+
+}
+
+
+function showResult(resultId,detailId,result,winningReturn){
+
+let element=document.getElementById(resultId);
+
+element.textContent=
+(result>=0?"+":"")+euro(result);
+
+element.className=
+"amount "+(result>=0?"positive":"negative");
+
+
+document.getElementById(detailId).textContent=
+"Ritorno quota vincente: "+euro(winningReturn);
+
+}
+
+
+function resetCalculator(){
+
+document.getElementById("capital").value=300;
+
+document.getElementById("commission").value=25;
+
+document.getElementById("rounding").value=0.10;
+
+document.getElementById("odd1").value=2.20;
+
+document.getElementById("oddX").value=3.60;
+
+document.getElementById("odd2").value=4.50;
+
+optimize();
+
+}
+
+
+document.querySelectorAll("input,select").forEach(
+element=>{
+element.addEventListener("input",optimize);
+}
+);
+
+
+optimize();
+
+</script>
+
+</body>
+</html>
