@@ -9,170 +9,244 @@
 *{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#f4f6f8;
-  color:#111827;
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:#f4f6f8;
+color:#111827;
 }
 
 .container{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
+max-width:900px;
+margin:auto;
+padding:18px;
 }
 
 h1{
-  margin:0 0 6px;
-  font-size:28px;
+margin:0 0 5px;
+font-size:30px;
 }
 
 .subtitle{
-  color:#6b7280;
-  margin-bottom:20px;
+color:#6b7280;
+margin-bottom:18px;
 }
 
 .card{
-  background:white;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 3px 15px rgba(0,0,0,.06);
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin-bottom:16px;
+box-shadow:0 3px 15px rgba(0,0,0,.06);
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
 }
 
 label{
-  display:block;
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:6px;
+display:block;
+font-size:14px;
+font-weight:800;
+margin-bottom:6px;
 }
 
 input,select{
-  width:100%;
-  padding:13px;
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  font-size:16px;
-  background:white;
+width:100%;
+padding:13px;
+border:1px solid #d1d5db;
+border-radius:11px;
+font-size:16px;
+background:#fff;
+}
+
+.match{
+display:grid;
+grid-template-columns:1fr 60px 1fr;
+align-items:center;
+gap:10px;
+text-align:center;
+}
+
+.vs{
+font-weight:900;
+font-size:18px;
+color:#6b7280;
 }
 
 .book{
-  border:1px solid #e5e7eb;
-  border-radius:14px;
-  padding:15px;
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:16px;
 }
 
 .book h3{
-  margin:0 0 12px;
+margin:0 0 12px;
+font-size:19px;
 }
 
 button{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:14px;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
+width:100%;
+border:0;
+border-radius:13px;
+padding:15px;
+font-size:17px;
+font-weight:900;
+cursor:pointer;
 }
 
 .optimize{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:#fff;
 }
 
 .reset{
-  margin-top:8px;
-  background:#e5e7eb;
-  color:#111827;
-}
-
-.results{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.result{
-  padding:15px;
-  border-radius:14px;
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-}
-
-.result h3{
-  margin:0 0 8px;
-}
-
-.amount{
-  font-size:24px;
-  font-weight:900;
-}
-
-.positive{
-  color:#15803d;
-}
-
-.negative{
-  color:#dc2626;
-}
-
-.summary{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.summaryBox{
-  background:#f8fafc;
-  padding:14px;
-  border-radius:12px;
-}
-
-.summaryBox strong{
-  display:block;
-  font-size:20px;
-  margin-top:5px;
+margin-top:8px;
+background:#e5e7eb;
+color:#111827;
 }
 
 .status{
-  padding:12px;
-  border-radius:12px;
-  font-weight:800;
-  margin-top:12px;
+padding:14px;
+border-radius:13px;
+font-weight:900;
+margin-top:14px;
 }
 
 .good{
-  background:#dcfce7;
-  color:#166534;
+background:#dcfce7;
+color:#166534;
 }
 
 .warning{
-  background:#fef3c7;
-  color:#92400e;
+background:#fef3c7;
+color:#92400e;
+}
+
+.error{
+background:#fee2e2;
+color:#991b1b;
+}
+
+.bet-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+
+.bet-card{
+border-radius:17px;
+padding:17px;
+background:#f8fafc;
+border:2px solid #e5e7eb;
+}
+
+.bet-card h3{
+margin:0 0 10px;
+font-size:18px;
+}
+
+.bet-team{
+font-size:22px;
+font-weight:900;
+margin-bottom:8px;
+}
+
+.bet-book{
+font-weight:800;
+color:#4b5563;
+}
+
+.bet-odd{
+font-size:18px;
+margin-top:7px;
+}
+
+.bet-stake{
+font-size:27px;
+font-weight:900;
+margin-top:10px;
+}
+
+.results{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.result{
+padding:16px;
+border-radius:15px;
+background:#f8fafc;
+border:1px solid #e5e7eb;
+}
+
+.result h3{
+margin:0 0 8px;
+}
+
+.amount{
+font-size:24px;
+font-weight:900;
+}
+
+.positive{
+color:#15803d;
+}
+
+.negative{
+color:#dc2626;
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.summaryBox{
+background:#f8fafc;
+padding:15px;
+border-radius:13px;
+}
+
+.summaryBox strong{
+display:block;
+font-size:21px;
+margin-top:5px;
 }
 
 .small{
-  font-size:13px;
-  color:#6b7280;
-  margin-top:8px;
+font-size:13px;
+color:#6b7280;
+margin-top:8px;
+line-height:1.5;
 }
 
 @media(max-width:650px){
-  .grid,
-  .results,
-  .summary{
-    grid-template-columns:1fr;
-  }
+.grid,
+.bet-grid,
+.results,
+.summary{
+grid-template-columns:1fr;
+}
 
-  .container{
-    padding:14px;
-  }
+.match{
+grid-template-columns:1fr;
+}
+
+.vs{
+padding:2px;
+}
+
+.container{
+padding:13px;
+}
+
+h1{
+font-size:27px;
+}
 }
 </style>
 </head>
@@ -182,13 +256,42 @@ button{
 <div class="container">
 
 <h1>🔥 Surebet Optimizer</h1>
+
 <div class="subtitle">
 Calcolatore 1X2 con ottimizzazione automatica delle puntate
 </div>
 
+
+<!-- PARTITA -->
+
 <div class="card">
 
-<h2>Impostazioni</h2>
+<h2>⚽ Partita</h2>
+
+<div class="match">
+
+<div>
+<label>Squadra Casa</label>
+<input id="homeTeam" type="text" value="Inter">
+</div>
+
+<div class="vs">VS</div>
+
+<div>
+<label>Squadra Ospite</label>
+<input id="awayTeam" type="text" value="Milan">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- IMPOSTAZIONI -->
+
+<div class="card">
+
+<h2>⚙️ Impostazioni</h2>
 
 <div class="grid">
 
@@ -216,17 +319,22 @@ Calcolatore 1X2 con ottimizzazione automatica delle puntate
 </div>
 
 
+<!-- QUOTE -->
+
 <div class="card">
 
-<h2>Quote</h2>
+<h2>📊 Quote e bookmaker</h2>
 
 <div class="grid">
 
 <div class="book">
 
-<h3>1 — GoldBet</h3>
+<h3>🏠 Esito 1</h3>
 
-<label>Quota 1</label>
+<label>Bookmaker</label>
+<input id="book1" type="text" value="GoldBet">
+
+<label style="margin-top:12px">Quota 1</label>
 <input id="odd1" type="number" min="1.01" step="0.01" value="2.20">
 
 </div>
@@ -234,9 +342,12 @@ Calcolatore 1X2 con ottimizzazione automatica delle puntate
 
 <div class="book">
 
-<h3>X — Sportium</h3>
+<h3>🤝 Esito X</h3>
 
-<label>Quota X</label>
+<label>Bookmaker</label>
+<input id="bookX" type="text" value="Sportium">
+
+<label style="margin-top:12px">Quota X</label>
 <input id="oddX" type="number" min="1.01" step="0.01" value="3.60">
 
 </div>
@@ -244,9 +355,12 @@ Calcolatore 1X2 con ottimizzazione automatica delle puntate
 
 <div class="book">
 
-<h3>2 — QuiGioco</h3>
+<h3>✈️ Esito 2</h3>
 
-<label>Quota 2</label>
+<label>Bookmaker</label>
+<input id="book2" type="text" value="QuiGioco">
+
+<label style="margin-top:12px">Quota 2</label>
 <input id="odd2" type="number" min="1.01" step="0.01" value="4.50">
 
 </div>
@@ -255,6 +369,8 @@ Calcolatore 1X2 con ottimizzazione automatica delle puntate
 
 </div>
 
+
+<!-- CALCOLO -->
 
 <div class="card">
 
@@ -270,6 +386,94 @@ RESET
 
 </div>
 
+
+<!-- INDICAZIONE SCOMMESSE -->
+
+<div class="card">
+
+<h2>🎯 DOVE SCOMMETTERE</h2>
+
+<div class="bet-grid">
+
+<div class="bet-card">
+
+<h3>1️⃣ VINCENTE</h3>
+
+<div id="displayHome" class="bet-team">
+Inter
+</div>
+
+<div class="bet-book">
+🏦 <span id="displayBook1">GoldBet</span>
+</div>
+
+<div class="bet-odd">
+Quota: <strong id="displayOdd1">2,20</strong>
+</div>
+
+<div class="bet-stake">
+<span id="displayStake1">€0,00</span>
+</div>
+
+</div>
+
+
+<div class="bet-card">
+
+<h3>❌ PAREGGIO</h3>
+
+<div class="bet-team">
+PAREGGIO
+</div>
+
+<div class="bet-book">
+🏦 <span id="displayBookX">Sportium</span>
+</div>
+
+<div class="bet-odd">
+Quota: <strong id="displayOddX">3,60</strong>
+</div>
+
+<div class="bet-stake">
+<span id="displayStakeX">€0,00</span>
+</div>
+
+</div>
+
+
+<div class="bet-card">
+
+<h3>2️⃣ VINCENTE</h3>
+
+<div id="displayAway" class="bet-team">
+Milan
+</div>
+
+<div class="bet-book">
+🏦 <span id="displayBook2">QuiGioco</span>
+</div>
+
+<div class="bet-odd">
+Quota: <strong id="displayOdd2">4,50</strong>
+</div>
+
+<div class="bet-stake">
+<span id="displayStake2">€0,00</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="small">
+Queste sono le tre giocate da effettuare per coprire tutti gli esiti.
+Le puntate vengono ottimizzate automaticamente in base alle quote.
+</div>
+
+</div>
+
+
+<!-- DISTRIBUZIONE -->
 
 <div class="card">
 
@@ -294,22 +498,22 @@ RESET
 
 </div>
 
-<div class="small">
-La distribuzione viene calcolata in base alle quote e non divide semplicemente il capitale in tre parti uguali.
 </div>
 
-</div>
 
+<!-- RISULTATI -->
 
 <div class="card">
 
-<h2>📊 Risultato nei tre scenari</h2>
+<h2>📈 Risultato nei tre scenari</h2>
 
 <div class="results">
 
 <div class="result">
 
-<h3>Se vince 1</h3>
+<h3 id="scenario1">
+Se vince Inter
+</h3>
 
 <div id="result1" class="amount">
 €0,00
@@ -322,7 +526,9 @@ La distribuzione viene calcolata in base alle quote e non divide semplicemente i
 
 <div class="result">
 
-<h3>Se esce X</h3>
+<h3>
+Se esce X
+</h3>
 
 <div id="resultX" class="amount">
 €0,00
@@ -335,7 +541,9 @@ La distribuzione viene calcolata in base alle quote e non divide semplicemente i
 
 <div class="result">
 
-<h3>Se vince 2</h3>
+<h3 id="scenario2">
+Se vince Milan
+</h3>
 
 <div id="result2" class="amount">
 €0,00
@@ -350,9 +558,11 @@ La distribuzione viene calcolata in base alle quote e non divide semplicemente i
 </div>
 
 
+<!-- RIEPILOGO -->
+
 <div class="card">
 
-<h2>📈 Riepilogo</h2>
+<h2>💵 Riepilogo</h2>
 
 <div class="summary">
 
@@ -376,13 +586,15 @@ Rendimento minimo
 </div>
 
 
+<!-- FORMULA -->
+
 <div class="card">
 
-<h2>🧮 Come viene calcolato</h2>
+<h2>🧮 Metodo di calcolo</h2>
 
 <div class="small">
 
-Per ogni scenario viene considerato:
+Il sistema considera:
 
 <br><br>
 
@@ -390,15 +602,15 @@ Per ogni scenario viene considerato:
 
 +
 
-<strong>25% delle due perdite</strong>
+<strong>25% delle due giocate perdenti</strong>
 
 −
 
-<strong>capitale totale giocato</strong>
+<strong>capitale totale investito</strong>
 
 <br><br>
 
-L'ottimizzatore cerca di distribuire il capitale in modo da rendere il più alto possibile il risultato dello scenario peggiore.
+L'algoritmo distribuisce automaticamente il capitale in proporzione alle quote, cercando di rendere il più alto possibile il risultato dello scenario peggiore.
 
 </div>
 
@@ -419,11 +631,20 @@ currency:"EUR"
 }
 
 
+function formatOdd(value){
+
+return Number(value).toFixed(2).replace(".",",");
+
+}
+
+
 function getNumber(id){
 
-let value=parseFloat(document.getElementById(id).value);
+let value=parseFloat(
+document.getElementById(id).value
+);
 
-if(!isFinite(value) || value<0){
+if(!isFinite(value)){
 return 0;
 }
 
@@ -432,17 +653,29 @@ return value;
 }
 
 
-function calculateScenario(stakes,odds,commission,winner){
+function calculateScenario(
+stakes,
+odds,
+commission,
+winner
+){
 
-let total=stakes[0]+stakes[1]+stakes[2];
+let total=
+stakes[0]+stakes[1]+stakes[2];
 
-let losingStake=total-stakes[winner];
+let losingStake=
+total-stakes[winner];
 
-let winningReturn=stakes[winner]*odds[winner];
+let winningReturn=
+stakes[winner]*odds[winner];
 
-let commissionAmount=losingStake*commission;
+let commissionAmount=
+losingStake*commission;
 
-return winningReturn+commissionAmount-total;
+return
+winningReturn+
+commissionAmount-
+total;
 
 }
 
@@ -451,133 +684,195 @@ function optimize(){
 
 let capital=getNumber("capital");
 
-let commission=getNumber("commission")/100;
+let commission=
+getNumber("commission")/100;
 
-let q1=Math.max(1.01,getNumber("odd1"));
+let q1=Math.max(
+1.01,
+getNumber("odd1")
+);
 
-let qX=Math.max(1.01,getNumber("oddX"));
+let qX=Math.max(
+1.01,
+getNumber("oddX")
+);
 
-let q2=Math.max(1.01,getNumber("odd2"));
+let q2=Math.max(
+1.01,
+getNumber("odd2")
+);
 
-let rounding=getNumber("rounding");
+let rounding=
+getNumber("rounding");
+
+let home=
+document.getElementById("homeTeam").value.trim();
+
+let away=
+document.getElementById("awayTeam").value.trim();
+
+let book1=
+document.getElementById("book1").value.trim();
+
+let bookX=
+document.getElementById("bookX").value.trim();
+
+let book2=
+document.getElementById("book2").value.trim();
+
+
+if(!home){
+home="Squadra Casa";
+}
+
+if(!away){
+away="Squadra Ospite";
+}
+
+if(!book1){
+book1="Bookmaker 1";
+}
+
+if(!bookX){
+bookX="Bookmaker X";
+}
+
+if(!book2){
+book2="Bookmaker 2";
+}
+
 
 if(capital<=0){
 
 document.getElementById("status").innerHTML=
-'<div class="status warning">Inserisci un capitale valido.</div>';
+'<div class="status error">Inserisci un capitale valido.</div>';
 
 return;
 
 }
+
 
 if(rounding<=0){
 rounding=0.01;
 }
 
 
-let odds=[q1,qX,q2];
+let odds=[
+q1,
+qX,
+q2
+];
 
-
-/*
-
-Formula:
-
-Risultato scenario i =
-
-stake_i × quota_i
-+
-commissione × (capitale - stake_i)
--
-capitale
-
-Per equalizzare i tre risultati:
-
-stake_i ∝ 1 / (quota_i - commissione)
-
-*/
 
 let weights=[];
 
+
 for(let i=0;i<3;i++){
 
-let denominator=odds[i]-commission;
+let denominator=
+odds[i]-commission;
 
 if(denominator<=0){
 denominator=0.01;
 }
 
-weights.push(1/denominator);
+weights.push(
+1/denominator
+);
 
 }
 
 
 let weightTotal=
-weights[0]+weights[1]+weights[2];
+weights[0]+
+weights[1]+
+weights[2];
 
 
-let stakes=weights.map(
+let stakes=
+weights.map(
 w=>capital*w/weightTotal
 );
 
 
 /*
-
-Arrotondamento delle puntate.
-
-Le prime due vengono arrotondate,
-la terza riceve il residuo per garantire
-che la somma sia esattamente il capitale.
-
+Arrotondamento.
+La terza giocata riceve
+il capitale residuo.
 */
 
-let s1=Math.round(stakes[0]/rounding)*rounding;
+let s1=
+Math.round(
+stakes[0]/rounding
+)*rounding;
 
-let sX=Math.round(stakes[1]/rounding)*rounding;
+let sX=
+Math.round(
+stakes[1]/rounding
+)*rounding;
 
-let s2=capital-s1-sX;
+let s2=
+capital-s1-sX;
+
 
 if(s2<0){
 
 s2=0;
 
-let remaining=capital-s2;
+let remaining=
+capital-s2;
 
-s1=Math.min(s1,remaining);
+s1=
+Math.min(
+s1,
+remaining
+);
 
-sX=remaining-s1;
+sX=
+remaining-s1;
 
 }
 
 
-s1=Number(s1.toFixed(2));
-sX=Number(sX.toFixed(2));
-s2=Number(s2.toFixed(2));
+s1=Number(
+s1.toFixed(2)
+);
+
+sX=Number(
+sX.toFixed(2)
+);
+
+s2=Number(
+s2.toFixed(2)
+);
 
 
-let finalStakes=[s1,sX,s2];
-
-let finalOdds=odds;
+let finalStakes=[
+s1,
+sX,
+s2
+];
 
 
 let results=[
 
 calculateScenario(
 finalStakes,
-finalOdds,
+odds,
 commission,
 0
 ),
 
 calculateScenario(
 finalStakes,
-finalOdds,
+odds,
 commission,
 1
 ),
 
 calculateScenario(
 finalStakes,
-finalOdds,
+odds,
 commission,
 2
 )
@@ -585,43 +880,140 @@ commission,
 ];
 
 
-document.getElementById("stake1").textContent=euro(s1);
-
-document.getElementById("stakeX").textContent=euro(sX);
-
-document.getElementById("stake2").textContent=euro(s2);
-
-
-showResult("result1","return1",results[0],s1*q1);
-
-showResult("resultX","returnX",results[1],sX*qX);
-
-showResult("result2","return2",results[2],s2*q2);
-
-
-let minimum=Math.min(
+let minimum=
+Math.min(
 results[0],
 results[1],
 results[2]
+];
+
+
+let yieldPercent=
+(minimum/capital)*100;
+
+
+/* DISTRIBUZIONE */
+
+document.getElementById(
+"stake1"
+).textContent=euro(s1);
+
+document.getElementById(
+"stakeX"
+).textContent=euro(sX);
+
+document.getElementById(
+"stake2"
+).textContent=euro(s2);
+
+
+/* DOVE SCOMMETTERE */
+
+document.getElementById(
+"displayHome"
+).textContent=home;
+
+document.getElementById(
+"displayAway"
+).textContent=away;
+
+document.getElementById(
+"displayBook1"
+).textContent=book1;
+
+document.getElementById(
+"displayBookX"
+).textContent=bookX;
+
+document.getElementById(
+"displayBook2"
+).textContent=book2;
+
+document.getElementById(
+"displayOdd1"
+).textContent=formatOdd(q1);
+
+document.getElementById(
+"displayOddX"
+).textContent=formatOdd(qX);
+
+document.getElementById(
+"displayOdd2"
+).textContent=formatOdd(q2);
+
+document.getElementById(
+"displayStake1"
+).textContent=euro(s1);
+
+document.getElementById(
+"displayStakeX"
+).textContent=euro(sX);
+
+document.getElementById(
+"displayStake2"
+).textContent=euro(s2);
+
+
+/* SCENARI */
+
+document.getElementById(
+"scenario1"
+).textContent=
+"Se vince "+home;
+
+document.getElementById(
+"scenario2"
+).textContent=
+"Se vince "+away;
+
+
+/* RISULTATI */
+
+showResult(
+"result1",
+"return1",
+results[0],
+s1*q1
+);
+
+showResult(
+"resultX",
+"returnX",
+results[1],
+sX*qX
+);
+
+showResult(
+"result2",
+"return2",
+results[2],
+s2*q2
 );
 
 
-let yieldPercent=(minimum/capital)*100;
+/* RIEPILOGO */
 
-
-document.getElementById("totalInvested").textContent=
+document.getElementById(
+"totalInvested"
+).textContent=
 euro(capital);
 
+document.getElementById(
+"minimumProfit"
+).textContent=
+(minimum>=0?"+":"")+
+euro(minimum);
 
-document.getElementById("minimumProfit").textContent=
-(minimum>=0?"+":"")+euro(minimum);
-
-
-document.getElementById("minimumYield").textContent=
+document.getElementById(
+"minimumYield"
+).textContent=
 yieldPercent.toFixed(2)+"%";
 
 
-let status=document.getElementById("status");
+/* STATO */
+
+let status=
+document.getElementById("status");
 
 
 if(minimum>=0){
@@ -632,52 +1024,105 @@ status.innerHTML=
 }else{
 
 status.innerHTML=
-'<div class="status warning">⚠️ Con queste quote non è garantito un utile in tutti gli scenari.</div>';
+'<div class="status warning">⚠️ Con queste quote non è garantito un utile positivo in tutti gli scenari.</div>';
 
 }
 
 }
 
 
-function showResult(resultId,detailId,result,winningReturn){
+function showResult(
+resultId,
+detailId,
+result,
+winningReturn
+){
 
-let element=document.getElementById(resultId);
+let element=
+document.getElementById(resultId);
+
 
 element.textContent=
-(result>=0?"+":"")+euro(result);
+(result>=0?"+":"")+
+euro(result);
+
 
 element.className=
-"amount "+(result>=0?"positive":"negative");
+"amount "+
+(result>=0?
+"positive":
+"negative"
+);
 
 
-document.getElementById(detailId).textContent=
-"Ritorno quota vincente: "+euro(winningReturn);
+document.getElementById(
+detailId
+).textContent=
+"Ritorno quota vincente: "+
+euro(winningReturn);
 
 }
 
 
 function resetCalculator(){
 
-document.getElementById("capital").value=300;
+document.getElementById(
+"homeTeam"
+).value="Inter";
 
-document.getElementById("commission").value=25;
+document.getElementById(
+"awayTeam"
+).value="Milan";
 
-document.getElementById("rounding").value=0.10;
+document.getElementById(
+"capital"
+).value=300;
 
-document.getElementById("odd1").value=2.20;
+document.getElementById(
+"commission"
+).value=25;
 
-document.getElementById("oddX").value=3.60;
+document.getElementById(
+"rounding"
+).value=0.10;
 
-document.getElementById("odd2").value=4.50;
+document.getElementById(
+"book1"
+).value="GoldBet";
+
+document.getElementById(
+"bookX"
+).value="Sportium";
+
+document.getElementById(
+"book2"
+).value="QuiGioco";
+
+document.getElementById(
+"odd1"
+).value=2.20;
+
+document.getElementById(
+"oddX"
+).value=3.60;
+
+document.getElementById(
+"odd2"
+).value=4.50;
 
 optimize();
 
 }
 
 
-document.querySelectorAll("input,select").forEach(
+document
+.querySelectorAll("input,select")
+.forEach(
 element=>{
-element.addEventListener("input",optimize);
+element.addEventListener(
+"input",
+optimize
+);
 }
 );
 
