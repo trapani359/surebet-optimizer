@@ -380,7 +380,7 @@ td:first-child,th:first-child{
     </div>
 
     <div style="margin-top:14px;">
-      <button class="primary" id="loadApiBtn">
+      <button type="button" class="primary" id="loadApiBtn">
         🔄 CARICA QUOTE AUTOMATICAMENTE
       </button>
     </div>
@@ -568,7 +568,7 @@ td:first-child,th:first-child{
    CONFIGURAZIONE API
    ========================================================= */
 
-const API_URL = "/api/odds";
+const API_URL = "/api/odds?ts=" + Date.now();
 
 
 /* =========================================================
@@ -1644,6 +1644,12 @@ document
    ========================================================= */
 
 renderBookmakers();
+
+/*
+ * Caricamento automatico all'apertura della pagina.
+ * Il pulsante resta disponibile per ricaricare le quote manualmente.
+ */
+loadApi();
 
 </script>
 
